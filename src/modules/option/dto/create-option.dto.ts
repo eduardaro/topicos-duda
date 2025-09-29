@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-// eslint-disable-next-line prettier/prettier
 export class CreateOptionDto {
-    title: string;
+    name: string;
     description: string;
     scenarioId: string;
+    // Scores: Score[]
 }

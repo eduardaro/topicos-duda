@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Logger, Module } from '@nestjs/common';
-import { ScenarioService } from './scenario.service';
-import { ScenarioController } from './scenario.controller';
+import { ScoreService } from './score.service';
+import { ScoreController } from './score.controller';
 import * as UseCases from './use-cases';
 import * as Repositories from './repository';
 import { SharedModule } from 'src/shared/shared.module';
@@ -11,7 +11,7 @@ const repositories = Object.values(Repositories);
 
 @Module({
   imports: [SharedModule],
-  controllers: [ScenarioController],
-  providers: [ScenarioService, ...useCases, ...repositories, Logger],
+  controllers: [ScoreController],
+  providers: [ScoreService, ...useCases, ...repositories, Logger],
 })
-export class ScenarioModule { }
+export class ScoreModule { }

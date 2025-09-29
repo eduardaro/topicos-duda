@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { FindOneOptionRepository } from '../repository/findone-option.repository';
 
 @Injectable()
@@ -13,8 +13,12 @@ export class FindOneOptionUseCase {
         try {
             const option = await this.findoneOptionRepository.findone(id);
             this.logger.log("Option found successfully");
+            if (!option) return new NotFoundException("Option not found");
             return option;
         } catch (error) {
+            if (error instanceof NotFoundException) {
+                this.logger.warn("Option not found");
+            }
             this.logger.error(error);
             throw error;
         }

@@ -1,26 +1,35 @@
-import { Injectable } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Injectable, Logger } from '@nestjs/common';
 import { CreateOptionDto } from './dto/create-option.dto';
 import { UpdateOptionDto } from './dto/update-option.dto';
+import { CreateOptionUseCase, ListOptionUseCase, DeleteOptionUseCase, FindOneOptionUseCase, UpdateOptionUseCase } from './use-cases';
 
 @Injectable()
 export class OptionService {
-  create(createOptionDto: CreateOptionDto) {
-    return 'This action adds a new option';
+  constructor(private readonly createOptionUseCase: CreateOptionUseCase, 
+    private readonly listOptionUseCase: ListOptionUseCase, 
+    private readonly findoneOptionUseCase: FindOneOptionUseCase,
+    private readonly deleteOptionUseCase: DeleteOptionUseCase,
+    private readonly updateOptionUseCase: UpdateOptionUseCase) { }
+  
+  create(data: CreateOptionDto) {
+    return this.createOptionUseCase.execute(data);
   }
 
   findAll() {
-    return `This action returns all option`;
+    return this.listOptionUseCase.list();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} option`;
+  findOne(id: string) {
+    return this.findoneOptionUseCase.findone(id);
   }
 
-  update(id: number, updateOptionDto: UpdateOptionDto) {
-    return `This action updates a #${id} option`;
+  update(id: string, data: UpdateOptionDto) {
+    return this.updateOptionUseCase.update(id, data);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} option`;
+  remove(id: string) {
+    return this.deleteOptionUseCase.delete(id);
   }
 }

@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { Injectable, Logger } from '@nestjs/common';
-import { ListAllOptionRepository } from '../repository/listall-option.repository';
+import { ListOptionRepository } from '../repository/listall-option.repository';
 
 @Injectable()
 export class ListOptionUseCase {
     constructor(
-        private readonly listOptionRepository: ListAllOptionRepository,
+        private readonly listOptionRepository: ListOptionRepository,
         private readonly logger: Logger,
     ) {}
 
