@@ -6,16 +6,16 @@ export class CreateScoreDto {
     @IsString()
     @IsNotEmpty()
     @ApiProperty({
-        description: 'The name of the criterion',
-        example: 'Cost'
+        description: 'ID do option',
+        example: '93bd9a32-faf7-4e29-98fd-8590fab4324b'
     })
     optionId: string;
 
     @IsString()
     @IsNotEmpty()
     @ApiProperty({
-        description: 'The name of the criterion',
-        example: 'Cost'
+        description: 'ID do criterion',
+        example: '0d8d9a32-faf7-4e29-98fd-8590fab4324b'
     })
     criterionId: string;
 }

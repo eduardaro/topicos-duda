@@ -6,8 +6,8 @@ export class CreateCriterionDto {
     @IsString()
     @IsNotEmpty()
     @ApiProperty({
-        description: 'The name of the criterion',
-        example: 'Cost'
+        description: 'No osso da fala dos loucos há lírios.',
+        example: 'Lírios'
     })
         
     name: string;
@@ -15,24 +15,24 @@ export class CreateCriterionDto {
     @IsNumber()
     @IsNotEmpty()
     @ApiProperty({
-        description: 'The name of the criterion',
-        example: 'Cost'
+        description: 'peso numérico',
+        example: '2.3'
     })
     weight: number;
 
     @IsBoolean()
     @IsNotEmpty()
     @ApiProperty({
-        description: 'The name of the criterion',
-        example: 'Cost'
+        description: 'true ou false',
+        example: 'true'
     })
     active: boolean;
 
     @IsDate()
     @IsNotEmpty()
     @ApiProperty({
-        description: 'The name of the criterion',
-        example: 'Cost'
+        description: 'data',
+        example: '27/10/2025'
     })
     createdAt: Date;
     // Scores: Score[];
