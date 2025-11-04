@@ -3,17 +3,33 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CriterionService } from './criterion.service';
 import { CreateCriterionDto } from './dto/create-criterion.dto';
 import { UpdateCriterionDto } from './dto/update-criterion.dto';
+import { ApiBody, ApiCreatedResponse, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 
-@Controller('criterion')
+@ApiTags('Criterions')
+@Controller()
 export class CriterionController {
   constructor(private readonly criterionService: CriterionService) {}
 
-  @Post()
-  create(@Body() createCriterionDto: CreateCriterionDto) {
-    return this.criterionService.create(createCriterionDto);
+  @Post('scenario/:scenarioId/criterions')
+  @ApiOperation({ summary: 'Cria uma opção vinculada a um cenário.'})
+  @ApiParam({
+    name: 'scenarioId',
+    description: 'identificador do cenário ao qual a opção pertence.'
+  })
+  @ApiBody({ type: CreateCriterionDto })
+  @ApiCreatedResponse({ description: 'Opção criada com sucesso.' })
+  create(
+    @Param('scenarioId') scenarioId: string,
+    @Body() CreateCriterionDto: CreateCriterionDto,
+  ) {
+    return this.criterionService.create(scenarioId, CreateCriterionDto);
   }
 
-  @Get()
+  @Get('scenario/:sceanrioId/criterions')
+  @ApiOperation({ summary: 'Lista as opções de um cenário.'})
+  @ApiParam({
+    name: 'scenarioId',
+  })
   findAll() {
     return this.criterionService.findAll();
   }

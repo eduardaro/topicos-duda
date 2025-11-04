@@ -15,7 +15,7 @@ export class CriterionService {
     private readonly updateCriterionUseCase: UpdateCriterionUseCase
   ) { }
   
-  create(data: CreateCriterionDto) {
+  create(scenarioId: string, data: CreateCriterionDto) {
     return this.createCriterionUseCase.execute(data);
   }
 

@@ -10,9 +10,9 @@ export class CreateOptionUseCase {
         private readonly logger: Logger,
     ) {}
 
-    async execute(data: CreateOptionDto){
+    async execute(scenarioId: string, data: CreateOptionDto){
         try {
-            const option = this.createOptionRepository.create(data);
+            const option = this.createOptionRepository.create(scenarioId, data);
             this.logger.log('Optio created successfully');
             return option;
         } catch (error) {
